@@ -1,0 +1,4 @@
+include ':app'
+//include ':navigationkit-android'
+//include ':proximitykit-android'
+//include ':android-beacon-library'

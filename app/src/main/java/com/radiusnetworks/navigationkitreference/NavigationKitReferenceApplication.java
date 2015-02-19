@@ -8,12 +8,25 @@ import com.radiusnetworks.navigationkit.NavigationKitLocationNotifier;
 import com.radiusnetworks.navigationkit.NavigationKitManager;
 import com.radiusnetworks.navigationkit.configuration.Configuration;
 
+import org.altbeacon.beacon.BeaconParser;
+
 import java.util.HashMap;
 
 
 /**
- * Created by dyoung on 10/30/14.
+ * The <code>Application</code> class for the Navigation Kit's Reference App. It is
+ * ideal to place interactions with the Navigation Kit here, due to the
+ * accessibility of the <code>Application</code> class from any Activity.
+ *
+ * This class implements two required methods for the
+ * <code>NavigationKitLocationNotifier, didUpdateMapLocation</code> and
+ * <code>didUpdateMapConfig</code>. The <code>NavigationKitManager</code> constructor is
+ * called within this class's onCreate method, as is necessary for
+ * <code>NavigationKit</code> functionality.
+ *
+ * @author Matt Tyler
  */
+
 public class NavigationKitReferenceApplication extends android.app.Application implements NavigationKitLocationNotifier {
     private static final String TAG = "NavigationKitReferenceApplication";
 
@@ -21,7 +34,6 @@ public class NavigationKitReferenceApplication extends android.app.Application i
 
     @Override
     public void onCreate() {
-        Log.d(TAG,"onCreate");
 
         NavigationKitManager navigationKitManager = NavigationKitManager.getInstanceForApplication(this);
         navigationKitManager.setNavigationKitLocationNotifier(this);
@@ -32,9 +44,7 @@ public class NavigationKitReferenceApplication extends android.app.Application i
         configurationMap.put(Configuration.NK_MAP_CONFIG_URL_KEY,"https://s3.amazonaws.com/schika.radiusnetworks.com/nav_kit_reference_map_config.json");
         navigationKitManager.setConfiguration(configurationMap);
 
-        Log.d(TAG,"navigationKitManager starting");
         navigationKitManager.start();
-        Log.d(TAG,"navigationKitManager started");
 
     }
 
@@ -42,6 +52,10 @@ public class NavigationKitReferenceApplication extends android.app.Application i
     public void setMainActivity(MainActivity mainActivity) {
         this.mMainActivity = mainActivity;
     }
+    /**
+     * Invoked when a new map location is available.
+     * @param mapLocation Represents a location on a map.
+     */
 
     @Override
     public void didUpdateMapLocation(MapLocation mapLocation) {
@@ -49,6 +63,9 @@ public class NavigationKitReferenceApplication extends android.app.Application i
 
         // user location has changed
     }
+    /**
+     * Invoked when maps and map configurations have been updated from the server.
+     */
 
     @Override
     public void didUpdateMapConfig() {

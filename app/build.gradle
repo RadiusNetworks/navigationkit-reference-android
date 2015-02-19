@@ -1,15 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion '21.1.2'
+    compileSdkVersion 19
+    buildToolsVersion '19.1.0'
 
     defaultConfig {
         applicationId "com.radiusnetworks.navigationkitreference"
         minSdkVersion 9
-        targetSdkVersion 21 
-        versionCode 1
-        versionName "1.0"
+        targetSdkVersion 19
+        versionCode 2
+        versionName "1.1"
     }
     buildTypes {
         release {
@@ -39,7 +39,6 @@ allprojects {
 }
 
 dependencies {
-    // the support library is already bundled.  it probably should not be
     compile 'com.android.support:support-v4:21.0.2'
     compile 'com.radiusnetworks:navigationkit-android:0+@aar'
 }
